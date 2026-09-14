@@ -20,7 +20,7 @@ re-measurement date.
 ## Install
 
 ```bash
-git clone https://github.com/meenalsar008/advanced-seo-audit.git ~/.claude/skills/advanced-seo-audit
+git clone https://github.com/<your-username>/advanced-seo-audit.git ~/.claude/skills/advanced-seo-audit
 ```
 
 Restart Claude Code. The skill loads automatically when a request matches its description,
@@ -40,6 +40,23 @@ The procedure is always audit → implement → measure. Every report ends with 
 curl evidence that a crawler can actually see it, the next measurement date, and anything
 that was declined and why.
 
+## Keyword map input
+
+Phase 2 designs one landing page per search question. It can interview you for those
+questions, but it works better from a file. Drop a `keyword-map.csv` in your project root
+and it will read that instead:
+
+```bash
+cp ~/.claude/skills/advanced-seo-audit/keyword-map-template.csv ./keyword-map.csv
+```
+
+Four columns are required — `primary_keyword`, `question`, `target_url`, `status` — and the
+rest are optional. `status` is one of `keep`, `rewrite`, or `new`. Full column reference is
+in [SKILL.md](./SKILL.md) under Phase 2.
+
+Export as CSV rather than XLSX, keep one header row at the top, and put the file inside the
+folder you open Claude Code in.
+
 ## What it will not do
 
 Buy backlinks, join link-exchange schemes, cloak, hide text, or ship structured data that
@@ -50,7 +67,8 @@ ranking. Ask it for those and it will refuse and tell you why.
 
 ```
 advanced-seo-audit/
-├── SKILL.md              # operating procedure — the five phases
+├── SKILL.md                    # operating procedure — the five phases
+├── keyword-map-template.csv    # copy into your project as keyword-map.csv
 └── references/
     ├── seo.md            # technical foundation checklist
     ├── aeo.md            # answer engine optimization
